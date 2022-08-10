@@ -94,7 +94,7 @@ Options
 
 The number of simultaneous processes to use when executing.
 
-### `--partition-size [size]` (default: 2)
+### `--partition-size [size]` (default: 1)
 
 Use `[size]` as the batch size for grouping files. Some examples:
 
@@ -105,7 +105,7 @@ f1.js f2.js f3.js f4.js f5.js
 ```
 
 ```sh
-# will use five echo commands
+# will use five echo commands (the default behavior)
 $ bucket-runner --partition-size 1 f1.js f2.js f3.js f4.js f5.js -- echo
 f4.js
 f3.js
@@ -128,13 +128,11 @@ In the above example the coverage destinations would be named `coverage/page` an
 
 NOTE: If `--partition-regex` is used, `partition-size` is ignored as the regex will potentially create imbalanced partitions.
 
-### `--no-resolve-files`
+### `--resolve-files`
 
-Disable file existence checking.
+Enable file existence checking.
 
-By default, bucket-runner checks that all file arguments are files using `fs.statSync`, mostly to avoid accidentally including directories in the command and to provide a cross-platform globbing mechanism.
-
-Sometimes, however, this behavior is not wanted for generic commands: imagine using bucket-runner to spawn off `curl` commands in parallel while still having control over the output.
+By default, bucket-runner runs your command without any path validation, so even directories are passed through. This option lets you only run the command for actual files.
 
 ### `--continue-on-error`
 
@@ -155,7 +153,7 @@ var runner = require('bucket-runner');
 
 runner(['file1.js', 'glob1/*/**.js'], '_mocha', {
   concurrency: 2,
-  'partition-size': 1
+  'partition-size': 2
 }, function (err) {
   if (err) throw err;
 });
