@@ -1,7 +1,7 @@
 @aleclarson/bucket-runner [![Build Status](https://travis-ci.org/spotify/bucket-runner.svg?branch=master)](https://travis-ci.org/spotify/bucket-runner) [![Coverage Status](https://coveralls.io/repos/github/spotify/bucket-runner/badge.svg?branch=master)](https://coveralls.io/github/spotify/bucket-runner?branch=master)
 =============
 
-> This is a fork of the original `bucket-runner` package, with a few changes based on preference. The partition size defaults to 1. Path validation is disabled by default. You can use `{}` (for xargs parity) instead of the `{files}` token.
+> This is a fork of the original `bucket-runner` package, with a few changes based on preference. The partition size defaults to 1. Path validation is disabled by default. You can use `{}` (for xargs parity) instead of the `{files}` token. The `FORCE_COLOR` environment variable is set automatically.
 
 Run a command in parallel, distributing the input files to each process and buffer the output to prevent interleaving. Kind of like xargs but with control over output.
 
