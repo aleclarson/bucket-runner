@@ -6,6 +6,10 @@
   "bin": {
     "bucket-runner": "bin/cli.js"
   },
+  "files": [
+    "index.js",
+    "lib"
+  ],
   "engines": {
     "node": ">=12"
   },
